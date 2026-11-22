@@ -1,0 +1,12 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: sql_challenge_db
+    environment:
+      POSTGRES_USER: db_admin
+      POSTGRES_PASSWORD: superpassword123
+      POSTGRES_DB: sql_challenge
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql

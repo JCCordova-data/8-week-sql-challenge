@@ -1,6 +1,8 @@
+-- Which item was purchased first by the customer after they became a member?
+
 WITH first_item AS (
-    SELECT 
-        s.customer_id, 
+    SELECT
+        s.customer_id,
         m.product_name,
         DENSE_RANK() OVER (PARTITION BY s.customer_id ORDER BY s.order_date) AS rank
     FROM dannys_diner.sales AS s

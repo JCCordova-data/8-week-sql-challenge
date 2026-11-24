@@ -1,0 +1,17 @@
+[0m09:29:26.031268 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7302d21846e0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7302d1d9f260>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7302d1ad9130>]}
+
+
+============================== 09:29:26.034771 | 9849e7d7-65a4-4b98-9c72-53fe8c7023ba ==============================
+[0m09:29:26.034771 [info ] [MainThread]: Running with dbt=1.13.0-b1
+[0m09:29:26.035235 [debug] [MainThread]: running dbt with arguments {'static_parser': 'True', 'indirect_selection': 'eager', 'introspect': 'True', 'empty': 'None', 'maximum_seed_size_mib': '1', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'printer_width': '80', 'debug': 'False', 'log_path': 'logs', 'invocation_command': 'dbt show --inline \nWITH item_before_member AS (\n    SELECT \n        s.customer_id, \n        m.product_name,\n        DENSE_RANK() OVER (PARTITION BY s.customer_id ORDER BY s.order_date DESC) AS rank\n    FROM dannys_diner.sales AS s\n    JOIN dannys_diner.menu AS m ON m.product_id = s.product_id\n    JOIN dannys_diner.members AS mem ON mem.customer_id = s.customer_id\n    WHERE s.order_date < mem.join_date\n)\n\nSELECT\n    customer_id,\n    product_name\nFROM item_before_member\nWHERE rank = 1\nGROUP BY customer_id, product_name\n', 'fail_fast': 'False', 'partial_parse': 'True', 'log_format': 'default', 'use_colors': 'True', 'no_print': 'None', 'cache_selected_only': 'False', 'hints_enabled': 'True', 'profiles_dir': '/home/criscordova/.dbt', 'version_check': 'True', 'warn_error': 'None', 'write_json': 'True', 'use_experimental_parser': 'False', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'log_cache_events': 'False'}
+[0m09:29:26.035557 [debug] [MainThread]: Tracking: tracking
+[0m09:29:26.035931 [error] [MainThread]: [[31mERROR[0m]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path /home/criscordova/Projects/8-week-sql-challenge/dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m09:29:26.037211 [debug] [MainThread]: Resource report: {"command_name": "show", "command_success": false, "command_wall_clock_time": 0.06919921, "process_in_blocks": "71512", "process_kernel_time": 0.132046, "process_mem_max_rss": "107336", "process_out_blocks": "8", "process_user_time": 1.092384}
+[0m09:29:26.037587 [debug] [MainThread]: Command `dbt show` failed at 09:29:26.037513 after 0.07 seconds
+[0m09:29:26.037859 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7302d1994410>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7302d1d9f260>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7302d0bef2c0>]}
+[0m09:29:26.038134 [debug] [MainThread]: Flushing usage events
+[0m09:29:26.673018 [debug] [MainThread]: An error was encountered while trying to flush usage events
